@@ -46,14 +46,12 @@ public class AliFixApplication extends Application {
     }
 
     private void addPath() {
-        String path = Environment.getExternalStorageDirectory().getPath() + "/Alarms/out.apatch";
-        Log.e("path", path);
-
-        File file = new File(path);
-        Log.e("size", file.length() + "");
-        if (file.exists()) {
+        String path = Environment.getExternalStorageDirectory().getPath() + "/Alarms/";
+        File file1 = new File(path);
+        File[] files = file1.listFiles();
+        for (File file : files) {
             try {
-                patchManager.addPatch(path);
+                patchManager.addPatch(file.getPath());
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.e("e", e.getMessage());
